@@ -9,11 +9,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-#
-# from django.utils.translation import ugettext as _
-#
-# LANGUAGES = [
-# ('sp', _('Spanish')),
-# ('en', _('English')),
-# ]
-#
