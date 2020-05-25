@@ -21,13 +21,13 @@ class Citas(models.Model):
                           )
 
     doctor = models.ForeignKey('pediatras.Pediatra',
-                                on_delete=models.CASCADE)
+                               on_delete=models.CASCADE)
 
     consultorio = models.ForeignKey('consultorio.Consultorio',
-                                     on_delete=models.CASCADE)
+                                    on_delete=models.CASCADE)
 
     patient = models.ForeignKey('pacientes.Paciente',
-                                 on_delete=models.CASCADE)
+                                on_delete=models.CASCADE)
 
     creation_date = models.DateTimeField(auto_now_add=True,
                                          verbose_name="Fecha de Creacion")
@@ -36,7 +36,7 @@ class Citas(models.Model):
                                  verbose_name="Activo")
 
     appointment_date = models.DateTimeField(auto_now_add=True,
-                                          verbose_name="Fecha de la Cita")
+                                            verbose_name="Fecha de la Cita")
 
     def __str__(self):
         return self.patient.full_name() + " - " + self.appointment_date
