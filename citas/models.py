@@ -38,6 +38,10 @@ class Citas(models.Model):
 
     appointment_date = models.DateTimeField(verbose_name="Fecha de la Cita",)
 
+    comment = models.TextField(default=None,
+                               null=True,
+                               blank=True)
+
     def __str__(self):
         return self.patient.full_name() + " - " + self.appointment_date.strftime("%d - %B - %Y, %H:%M:%S" )
 

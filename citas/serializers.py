@@ -16,6 +16,6 @@ class CitasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Citas
 
-        fields = ('doctor', 'doctor_full_name', 'consultorio', 'office_full_info',
+        fields = ('id', 'doctor', 'doctor_full_name', 'consultorio', 'office_full_info',
                   'patient', 'patient_full_name',
                   'creation_date', 'active', 'appointment_date', 'str_date')

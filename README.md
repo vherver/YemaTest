@@ -8,7 +8,7 @@ _Proyecto para evaluacion de posición desarrollador python, el sistema se divid
 * Consultorios. Aplicacion que realizar acciones operaciones realacionadas a los consultorios (crear, leer y editar).
 
 _Para mayor informacion acerca de los enpoints, su funcionamiento y ejemplos re respuesta consultar la siguiente 
-[documentacion](https://documenter.getpostman.com/view/7570622/SzmcbzGG)_
+[documentacion](https://documenter.getpostman.com/view/7570622/SztA79JP?version=latest)_
 
 _El proyecto se conforma de dos secciones principales la seccion de api, cuyas url vienen acompañadas con el 
 prefijo api y una capa de Front para visuzlizar los datos de manera mñas sencilla cuyas url vienen acompañadas 
