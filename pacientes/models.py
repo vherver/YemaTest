@@ -1,7 +1,7 @@
 # Django
 from django.db import models
 from django.core.validators import RegexValidator
-
+from django.utils.translation import gettext_lazy as _
 
 # Python Base
 import uuid
@@ -30,23 +30,23 @@ class Paciente(models.Model):
                           unique=True,
                           )
 
-    name = models.CharField(verbose_name="Name",
+    name = models.CharField(verbose_name="Nombre",
                             max_length=35,
                             unique=False,
                             blank=False)
 
-    last_name = models.CharField(verbose_name="Last Name",
+    last_name = models.CharField(verbose_name="Apellido",
                                  max_length=35,
                                  unique=False,
                                  blank=False)
 
-    mother_name = models.CharField(verbose_name="Mother Name",
+    mother_name = models.CharField(verbose_name="Apellido Materno",
                                    max_length=35,
                                    unique=False,
                                    blank=False,
                                    null=True)
 
-    father_name = models.CharField(verbose_name="Responsible Name",
+    father_name = models.CharField(verbose_name="Nombre del Padre",
                                    max_length=35,
                                    unique=False,
                                    blank=False,
@@ -55,22 +55,25 @@ class Paciente(models.Model):
     phone = models.CharField(max_length=12,
                              unique=True,
                              validators=[phone_regex, ],
-                             verbose_name="Phone Number")
+                             verbose_name="Numero de Telefono")
 
     birthdate = models.DateField(blank=True,
                                 null=True,
-                                verbose_name=_("Birthdate"))
+                                verbose_name=_("Fecha de nacimiento"))
 
-    creation_date = models.DateField(auto_now_add=True,
-                                     verbose_name="Created")
+    creation_date = models.DateTimeField(auto_now_add=True,
+                                         verbose_name="Fecha de Creacion")
 
     active = models.BooleanField(default=True,
-                                 verbose_name="Active")
+                                 verbose_name="Activo")
 
     gender = models.CharField(max_length=1,
                               choices=GENDER_CHOICES,
                               default='F',
-                              verbose_name="Gender")
+                              verbose_name="Genero")
 
     def __str__(self):
-        return self.name
+        return self.full_name()
+
+    def full_name(self):
+        return self.name + " " + self.last_name + " " + self.mother_name
