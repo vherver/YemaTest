@@ -10,6 +10,6 @@ app_name = 'citas_v1'
 
 
 urlpatterns = [
-    # path(r'', ClientList.as_view(), name='Client_List_Creation'),
-    # path(r'<str:pk>/', ClientDetail.as_view(), name='Client detail / Update'),
+    path(r'', CitasList.as_view(), name='Citas_List_Creation'),
+    path(r'<uuid:pk>/', CitasDetail.as_view(), name='Citas detail / Update'),
 ]

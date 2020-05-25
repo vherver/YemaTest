@@ -55,4 +55,7 @@ class Pediatra(models.Model):
                                  verbose_name="Activo")
 
     def __str__(self):
-        return self.name
+        return self.full_name()
+
+    def full_name(self):
+        return self.name + " " + self.last_name + " " + self.mother_name

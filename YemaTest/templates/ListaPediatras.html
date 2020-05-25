@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Lista de pediatras {% endblock %}
+
+{% block header_scripts %}
+{% endblock %}
+
+{% block nav %}
+    {% include 'shared/main_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<p id="output"></p>
+
+<script>
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+      var myArr = JSON.parse(this.responseText);
+
+      var i;
+      var text;
+
+       text = "<table class=\"table\">\n" +
+          "  <thead>\n" +
+          "    <tr>\n" +
+          "      <th scope=\"col\">Nombre</th>\n" +
+          "      <th scope=\"col\">Telefono</th>\n" +
+          "      <th scope=\"col\">Correo Electronico</th>\n" +
+          "    </tr>\n" +
+          "  </thead>" +
+          "<tbody>";
+
+      for (i = 0; i < myArr['results'].length; i++) {
+          var temp_test =  "<tr>\n" +
+          " <th scope=\"col\"><a href=\"/front//pediatra/unique_pediatrician/\">pediatrician_name</a></th>\n" +
+          " <th scope=\"col\"><a>Telefono_replace</a></th>\n" +
+          " <th scope=\"col\"><a>email_replace</a></th>\n" +
+          "</tr>\n";
+
+          var res = temp_test.replace("unique_pediatrician", myArr['results'][i]['id'])
+                             .replace("pediatrician_name", myArr['results'][i]['name'] + " " +
+                                  myArr['results'][i]['last_name'] + " " + myArr['results'][i]['mother_name'])
+                              .replace("Telefono_replace", myArr['results'][i]['phone'])
+                              .replace("email_replace", myArr['results'][i]['mail']);
+
+          text += res
+        }
+
+      text += "</tbody>\n" +
+          "</table>" +
+          "<nav aria-label=\"Page navigation example\">\n" +
+          "  <ul class=\"pagination\">\n";
+      if (myArr["previous"]) {
+           text += "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=prev_url\">Previous</a></li>\n";
+           text = text.replace("prev_url", myArr["page"] - 1)
+      }
+      else {console.log(0)}
+
+      text += "<li class=\"page-item\"><a class=\"page-link\" >actual</a></li>\n";
+
+      if (myArr["next"]) {
+           text += "<li class=\"page-item\"><a class=\"page-link\" href=\"?page=next_url\">Next</a></li>\n";
+           text = text.replace("next_url", myArr["page"] + 1)
+      }
+      else {console.log(0)}
+
+
+      text += "  </ul>\n" +
+              "</nav>";
+
+      text = text.replace("actual", myArr["page"] );
+
+
+       document.getElementById('output').innerHTML = text;
+    }
+  };
+  xhttp.open("GET", "/api/v1/{{ app }}/?page={{ page }}", true);
+  xhttp.send();
+
+</script>
+
+
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

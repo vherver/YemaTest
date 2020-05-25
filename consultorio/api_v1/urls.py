@@ -10,6 +10,6 @@ app_name = 'consultorios_v1'
 
 
 urlpatterns = [
-    # path(r'', ClientList.as_view(), name='Client_List_Creation'),
-    # path(r'<str:pk>/', ClientDetail.as_view(), name='Client detail / Update'),
+    path(r'', ConsultorioList.as_view(), name='Consultorio_List_Creation'),
+    path(r'<uuid:pk>/', ConsultorioDetail.as_view(), name='Consultorio detail / Update'),
 ]

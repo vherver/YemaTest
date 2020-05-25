@@ -36,3 +36,6 @@ class Consultorio(models.Model):
 
     active = models.BooleanField(default=True,
                                  verbose_name="Activo")
+
+    def __str__(self):
+        return self.hospital + " " + self.office

@@ -22,6 +22,12 @@ urlpatterns = [
     path(r'api/v1/pediatras/', include('pediatras.api_v1.urls', namespace='pediatras')),
     path(r'api/v1/consultorios/', include('consultorio.api_v1.urls', namespace='consultorios')),
     path(r'api/v1/citas/', include('citas.api_v1.urls', namespace='citas')),
+    path(r'front/citas/', include('citas.front.urls', namespace='front citas')),
+    path(r'front/pacientes/', include('pacientes.front.urls', namespace='front pacientes')),
+    path(r'front/pediatras/', include('pediatras.front.urls', namespace='front pediatras')),
+    path(r'front/consultorios/', include('consultorio.front.urls', namespace='front consultorio')),
+
+
 ]
 
 admin.site.site_header = 'Yema Test - Victor Herver'

@@ -1,0 +1,94 @@
+
+
+{% block custom_scss %}
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <style>
+
+    a{
+        color: red;
+    }
+
+    a:hover{
+        color:blue;
+    }
+
+
+        #content-desktop {display: block;}
+#content-mobile {display: none;}
+
+@media screen and (max-width: 768px) {
+
+#content-desktop {display: none;}
+#content-mobile {display: block;}
+
+}
+
+#list_element_mobile{
+    color: white;
+    padding-top: 12px;
+    font-family: Roboto-Bold;
+    font-size: 20px;
+}
+
+
+#header_options{
+
+    font-size: 14px;
+}
+    navbar-default:visited {
+    background-color: #00AEFE;
+}
+
+    #element_nav:focus {
+  color: #ac7d3e;
+}
+
+    #element_nav:hover {
+  color: #ac7d3e;
+}
+
+
+    </style>
+
+
+{% endblock %}
+
+<div id="content-desktop" style="  box-shadow: 0 10px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+    <a href="{{ base }}/" class="navbar-brand">
+        <img   src="/static/img/vectorpaint.svg" height="60" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a onMouseOver="this.style.color='#BD9246'" onMouseOut="this.style.color='#FFF'" class="nav-link" href=/front/pacientes/>Pacientes</a>
+            </li>
+
+            <li class="nav-item">
+                <a onMouseOver="this.style.color='#BD9246'" onMouseOut="this.style.color='#FFF'" class="nav-link" href=/front/citas/>Citas</a>
+            </li>
+
+            <li class="nav-item">
+                <a onMouseOver="this.style.color='#BD9246'" onMouseOut="this.style.color='#FFF'" class="nav-link" href=/front/pediatras/>Pediatras</a>
+            </li>
+
+            <li class="nav-item">
+                <a onMouseOver="this.style.color='#BD9246'" onMouseOut="this.style.color='#FFF'" class="nav-link" href=/front/consultorios/>Consultorios</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+</div>
+
+
+
+
+<!-- END NAVBAR -->
