@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'citas',
     'consultorio',
     'pacientes',
-    'pediatras'
+    'pediatras',
+    'mensajes'
 ]
 
 MIDDLEWARE = [

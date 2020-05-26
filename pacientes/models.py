@@ -57,6 +57,9 @@ class Paciente(models.Model):
                              validators=[phone_regex, ],
                              verbose_name="Numero de Telefono")
 
+    email = models.EmailField(blank=True,
+                              null=True)
+
     birthdate = models.DateField(blank=True,
                                 null=True,
                                 verbose_name=_("Fecha de nacimiento"))
