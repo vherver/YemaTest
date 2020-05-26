@@ -9,3 +9,5 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+SENDGRID_KEY = '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'

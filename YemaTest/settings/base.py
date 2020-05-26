@@ -116,3 +116,6 @@ REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%d/%m/%Y %H:%M:%S",
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+FROM_MAIL = 'notificaciones@yemavictorherver.com'

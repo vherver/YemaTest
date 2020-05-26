@@ -65,7 +65,8 @@ class Paciente(models.Model):
                                 verbose_name=_("Fecha de nacimiento"))
 
     creation_date = models.DateTimeField(auto_now_add=True,
-                                         verbose_name="Fecha de Creacion")
+                                         verbose_name="Fecha de Creacion",
+                                         editable=False)
 
     active = models.BooleanField(default=True,
                                  verbose_name="Activo")
