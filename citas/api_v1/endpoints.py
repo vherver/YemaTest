@@ -2,7 +2,10 @@
 Archivo base para Enpoints de aplicacion
 """
 
-from rest_framework import generics
+from rest_framework import generics,  status
+from rest_framework.response import Response
+
+
 
 from YemaTest.paginator import Paginator
 from citas.serializers import CitasSerializer

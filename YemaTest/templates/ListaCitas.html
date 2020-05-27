@@ -92,6 +92,188 @@
 </script>
 
 
+<div class="container">
+  <h3>Agregar nueva Cita</h3>
+  <form class="form-horizontal" id="myForm">
+    <div class="form-group">
+       <label for="paciente">Paciente:</label>
+
+      <select name="paciente" id="paciente" onclick="httpGetPacientes()">
+
+      </select>
+    </div>
+        <div class="form-group">
+       <label for="pediatra">Pediatra:</label>
+
+      <select name="pediatra" id="pediatra" onclick="httpGetPediatras()">
+
+      </select>
+    </div>
+    <div class="form-group">
+       <label for="consultorio">Consultorio:</label>
+
+      <select name="consultorio" id="consultorio" onclick="httpGetConsultorios()">
+
+      </select>    </div>
+   <div class="form-group">
+      <label for="date">Fecha:</label>
+      <input type="datetime-local" id="start" name="date"
+       value="2018-07-22">
+    </div>
+
+      <button class="btn btn-success" onclick="add()">Nueva cita </button>
+  </form>
+</div>
+
+<script>
+
+function add() {
+
+    var data = JSON.stringify({
+                "doctor": document.forms["myForm"]["pediatra"].value,
+                "consultorio": document.forms["myForm"]["consultorio"].value,
+                "patient": document.forms["myForm"]["paciente"].value,
+                "appointment_date": "2020-07-16 02:01",
+                })
+
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 201) {
+        alert("The form was submitted");
+    }
+  };
+  xhttp.open("POST", "/api/v1/citas/", true);
+  xhttp.setRequestHeader("Content-Type", "application/json");
+
+  xhttp.send(data)
+
+
+
+}
+
+function httpGetPacientes()
+{
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open( "GET", "/api/v1/pacientes/", false );
+
+    xhr.send();
+
+    var pacientes = JSON.parse(xhr.response);
+
+            var ddlCustomers = document.getElementById("paciente");
+
+            //Add the Options to the DropDownList.
+            if (ddlCustomers.length == 0) {
+                for (var i = 0; i < pacientes["results"].length; i++) {
+                    var option = document.createElement("OPTION");
+
+                    //Set Customer Name in Text part.
+                    option.innerHTML = pacientes["results"][i].pacient_full_name;
+
+                    //Set CustomerId in Value part.
+                    option.value = pacientes["results"][i].id;
+
+                    //Add the Option element to DropDownList.
+                    ddlCustomers.options.add(option);
+                }
+            }
+}
+
+
+function httpGetPediatras()
+{
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open( "GET", "/api/v1/pediatras/", false );
+
+    xhr.send();
+
+    var pediatras = JSON.parse(xhr.response);
+
+            var ddlCustomers = document.getElementById("pediatra");
+
+            //Add the Options to the DropDownList.
+            if (ddlCustomers.length == 0) {
+                for (var i = 0; i < pediatras["results"].length; i++) {
+                    var option = document.createElement("OPTION");
+
+                    //Set Customer Name in Text part.
+                    option.innerHTML = pediatras["results"][i].pediatra_full_name;
+
+                    //Set CustomerId in Value part.
+                    option.value = pediatras["results"][i].id;
+
+                    //Add the Option element to DropDownList.
+                    ddlCustomers.options.add(option);
+                }
+            }
+}
+
+function httpGetConsultorios()
+{
+
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open( "GET", "/api/v1/consultorios/", false );
+
+    xhr.send();
+
+    var consultorios = JSON.parse(xhr.response);
+
+            var ddlCustomers = document.getElementById("consultorio");
+
+            //Add the Options to the DropDownList.
+
+            if (ddlCustomers.length == 0){
+
+                for (var i = 0; i < consultorios["results"].length; i++) {
+                var option = document.createElement("OPTION");
+
+                //Set Customer Name in Text part.
+                option.innerHTML = consultorios["results"][i].consultorio_full_name;
+
+                //Set CustomerId in Value part.
+                option.value = consultorios["results"][i].id;
+
+                //Add the Option element to DropDownList.
+                ddlCustomers.options.add(option);
+            }
+
+            }
+
+
+}
+
+</script>
+
+
+
+
+
+
 
 {% endblock %}
 

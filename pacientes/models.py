@@ -81,3 +81,8 @@ class Paciente(models.Model):
 
     def full_name(self):
         return self.name + " " + self.last_name + " " + self.mother_name
+
+    @property
+    def get_full_name(self):
+        return self.full_name()
+

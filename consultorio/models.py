@@ -39,3 +39,8 @@ class Consultorio(models.Model):
 
     def __str__(self):
         return self.hospital + " " + self.office
+
+    @property
+    def get_full_name(self):
+        return self.hospital + " " + self.office
+

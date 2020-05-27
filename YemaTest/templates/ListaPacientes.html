@@ -91,6 +91,80 @@
 </script>
 
 
+<div class="container">
+  <h3>Agregar nuevo Paciente</h3>
+  <form class="form-horizontal" id="myForm">
+    <div class="form-group">
+      <label for="name">Nombre del paciente:</label>
+      <input type="text" class="form-control" id="name" placeholder="Nombre" name="name">
+    </div>
+        <div class="form-group">
+      <label for="lastname">Apellido Paterno del paciente:</label>
+      <input type="text" class="form-control" id="lastname" placeholder="Apellido Paterno" name="lastname">
+    </div>
+    <div class="form-group">
+      <label for="mother_name">Apellido Materno del paciente:</label>
+      <input type="text" class="form-control" id="mother_name" placeholder="Apellido Materno" name="mother_name">
+    </div>
+    <div class="form-group">
+      <label for="fname">Nombre del padre:</label>
+      <input type="text" class="form-control" id="fname" placeholder="Nombre del padre" name="fname">
+    </div>
+        <div class="form-group">
+      <label for="phone">Numero Telefonico:</label>
+      <input type="text" class="form-control" id="phone" placeholder="Numero Telefonico" name="phone">
+    </div>
+    <div class="form-group">
+      <label for="mail">Correo Electronico:</label>
+      <input type="text" class="form-control" id="mail" placeholder="Correo electronico" name="mail">
+    </div>
+    <div class="form-group">
+      <label for="client_name">Genero:</label>
+      <select name="genero">
+          <option value="F">Femenido</option>
+          <option value="M" selected>Masculino</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="date">Fecha de nacimiento:</label>
+      <input type="date" id="start" name="date"
+       value="2018-07-22">
+    </div>
+
+      <button class="btn btn-success" onclick="add()">Nuevo Paciente </button>
+  </form>
+</div>
+
+<script>
+
+function add() {
+
+    var data = JSON.stringify({
+                "name": document.forms["myForm"]["name"].value,
+                "last_name": document.forms["myForm"]["lastname"].value,
+                "mother_name": document.forms["myForm"]["mother_name"].value,
+                "father_name": document.forms["myForm"]["fname"].value,
+                "phone": document.forms["myForm"]["phone"].value,
+                "email": document.forms["myForm"]["mail"].value,
+                "birthdate": document.forms["myForm"]["date"].value,
+                "gender": document.forms["myForm"]["genero"].value
+                })
+
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 201) {
+        alert("The form was submitted");
+    }
+  };
+  xhttp.open("POST", "/api/v1/pacientes/", true);
+  xhttp.setRequestHeader("Content-Type", "application/json");
+
+  xhttp.send(data);
+
+}
+
+
+</script>
+
 
 {% endblock %}
 
