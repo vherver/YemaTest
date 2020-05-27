@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Lista de citas {% endblock %}
+{% block title %} Pediatra {{ paciente_id }} {% endblock %}
 
 {% block header_scripts %}
 {% endblock %}
@@ -12,9 +12,41 @@
 
 {% block content %}
 
-
-
 <p id="output"></p>
+
+<script>
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+     var text = "<div class=\"card w-25\">\n" +
+         "    <div class=\"card-header\">\n" +
+         "        <h3>Pediatra</h3>\n" +
+         "    </div>\n" +
+         "    <div class=\"card-body\">\n" +
+         "        <h3 class=\"card-title\">Nombre: pediatrician_name</h3>\n" +
+         "        <p class=\"card-text\">Telefono: pediatrician_phone</p>\n" +
+         "        <p class=\"card-text\">Correo: pediatrician_mail</p>\n" +
+         "    </div>\n" +
+         "</div>";
+
+     var response = JSON.parse(this.responseText);
+
+     text = text.replace("pediatrician_name", response['name'] + ' ' +
+     response['last_name'] + ' ' + response['mother_name'] ).replace("pediatrician_phone", response['phone'])
+         .replace("pediatrician_mail", response['mail'])
+
+     document.getElementById('output').innerHTML = text;
+    }
+  };
+  xhttp.open("GET", "/api/v1/pediatras/{{ pediatra_id }}/", true);
+  xhttp.send();
+
+</script>
+
+
+<p id="citas"></p>
 
 <script>
 
@@ -31,7 +63,6 @@
           "  <thead>\n" +
           "    <tr>\n" +
           "      <th scope=\"col\">Paciente</th>\n" +
-          "      <th scope=\"col\">Pediatra</th>\n" +
           "      <th scope=\"col\">Consultorio</th>\n" +
           "      <th scope=\"col\">Fecha</th>\n" +
           "    </tr>\n" +
@@ -40,17 +71,14 @@
 
       for (i = 0; i < myArr['results'].length; i++) {
           var temp_test =  "<tr>\n" +
-          " <th scope=\"col\" ><a href=\"/front/pacientes/unique_pacient/\">paciente_name</a></th>\n" +
-          " <th scope=\"col\"><a href=\"/front/pediatras/unique_pediatrician/\">pediatrician_name</a></th>\n" +
+          " <th scope=\"col\"><a href=\"/front/pacient/unique_pacient/\">pacient_name</a></th>\n" +
           " <th scope=\"col\"><a href=\"/front/consultorios/unique_office/\">office_number</a></th>\n" +
           " <th scope=\"col\"><a>appointment_date</a></th>\n" +
           "</tr>\n";
 
           var res = temp_test.replace("unique_pacient", myArr['results'][i]['patient'])
-                              .replace("unique_pediatrician", myArr['results'][i]['doctor'])
                               .replace("unique_office", myArr['results'][i]['consultorio'])
-                              .replace("paciente_name", myArr['results'][i]['patient_full_name'])
-                              .replace("pediatrician_name", myArr['results'][i]['doctor_full_name'])
+                              .replace("pacient_name", myArr['results'][i]['patient_full_name'])
                               .replace("office_number", myArr['results'][i]['office_full_info'])
                               .replace("appointment_date", myArr['results'][i]['appointment_date'])
                               ;
@@ -83,10 +111,10 @@
       text = text.replace("actual", myArr["page"] );
 
 
-       document.getElementById('output').innerHTML = text;
+       document.getElementById('citas').innerHTML = text;
     }
   };
-  xhttp.open("GET", "/api/v1/{{ app }}/?page={{ page }}", true);
+  xhttp.open("GET", "/api/v1/citas/pediatra/{{ pediatra_id }}/?page={{ page }}", true);
   xhttp.send();
 
 </script>

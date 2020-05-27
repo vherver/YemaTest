@@ -25,3 +25,39 @@ class CitasDetail(generics.RetrieveUpdateAPIView):
 
     serializer_class = CitasSerializer
     queryset = Citas.objects.all().order_by('id')
+
+
+class CitasDetailPatient(generics.ListAPIView):
+    """
+        Enpoint para la creacion y listado de Citas en de un paciente
+    """
+    serializer_class = CitasSerializer
+    pagination_class = Paginator
+
+    def get_queryset(self):
+        query_set = Citas.objects.filter(patient__id=str(self.kwargs['pacient_id']))
+        return query_set
+
+
+class CitasDetailPediatra(generics.ListAPIView):
+    """
+        Enpoint para la creacion y listado de Citas en de un pediatra
+    """
+    serializer_class = CitasSerializer
+    pagination_class = Paginator
+
+    def get_queryset(self):
+        query_set = Citas.objects.filter(doctor__id=str(self.kwargs['pediatra_id']))
+        return query_set
+
+
+class CitasDetailConsultorio(generics.ListAPIView):
+    """
+        Enpoint para la creacion y listado de Citas en de un consultorio
+    """
+    serializer_class = CitasSerializer
+    pagination_class = Paginator
+
+    def get_queryset(self):
+        query_set = Citas.objects.filter(consultorio__id=str(self.kwargs['consultorio_id']))
+        return query_set

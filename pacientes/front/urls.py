@@ -11,4 +11,5 @@ app_name = 'pacientes_front'
 
 urlpatterns = [
     path(r'', pacientes_view, name='front all patientes'),
+    path(r'<uuid:paciente_id>/', pacientes_detail_view, name='Patients detail'),
 ]

@@ -6,12 +6,13 @@ _Proyecto para evaluacion de posición desarrollador python, el sistema se divid
 * Citas. Aplicacion que realizar acciones relacionadas con las citas.
 * Medicos. Aplicacion que realizar acciones operaciones realacionadas a los medicos (crear, leer y editar).
 * Consultorios. Aplicacion que realizar acciones operaciones realacionadas a los consultorios (crear, leer y editar).
+* Mensajes. Aplicacion que realizar acciones operaciones realacionadas al envio de mensajes.
 
 _Para mayor informacion acerca de los enpoints, su funcionamiento y ejemplos re respuesta consultar la siguiente 
 [documentacion](https://documenter.getpostman.com/view/7570622/SztA79JP?version=latest)_
 
 _El proyecto se conforma de dos secciones principales la seccion de api, cuyas url vienen acompañadas con el 
-prefijo api y una capa de Front para visuzlizar los datos de manera mñas sencilla cuyas url vienen acompañadas 
+prefijo api y una capa de Front para visuqlizar los datos de manera más sencilla cuyas url vienen acompañadas 
 del prefijo front_
 
 ## Comenzando 
@@ -39,6 +40,9 @@ _Una vez levantado el servidor la aplicacion correra en el puerto 8000_
 _Para ejecutar los tests de la aplicacion es necesario correr el siguiente comando:_
 
 _python manage.py test_
+
+_Lo cual ejecutara 24 test relacionados con la creacion, listado y actualizacion de los diferentes modelos en 
+la base de datos_
 
 
 ## Recomendaciones
