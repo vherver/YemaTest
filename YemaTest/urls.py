@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from citas.front.views import citas_view
 
 urlpatterns = [
+    path(r'', citas_view),
     path('admin/', admin.site.urls),
     path(r'api/v1/pacientes/', include('pacientes.api_v1.urls', namespace='pacientes')),
     path(r'api/v1/pediatras/', include('pediatras.api_v1.urls', namespace='pediatras')),
